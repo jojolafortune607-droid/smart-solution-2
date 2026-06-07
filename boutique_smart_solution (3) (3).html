@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Solution | Abonnements Streaming Premium Brazzaville</title>
+  
+  <!-- Polices Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Swiper.js pour d'éventuels carrousels (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    /* ==========================================================================
+       🎨 VARIABLES DE THEME : GRIS DOUX MAT & ACCENTS DORÉ INCRUSTÉ
+       ========================================================================== */
+    :root {
+      /* FOND PRINCIPAL - Gris doux & mat très haut de gamme */
+      --gris-fond:         #1e2024;
+      --gris-surface:      #262930;
+      --gris-subtle:       #32363f;
+      
+      /* TEXTES */
+      --blanc:             #ffffff;
+      --blanc-soft:        #ccd0d9;
+      
+      /* ACCENTS - Doré noble & métallique pour l'effet incrusté */
+      --or-base:           #cda34b;
+      --or-bright:         #f1ca74;
+      --or-gradient:       linear-gradient(135deg, #a17f30 0%, #e7c373 50%, #b38f3b 100%);
+      
+      /* EFFETS GRAPHQUES LUXE */
+      --or-incruste:       inset 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.15);
+      --border-subtle:     1px solid rgba(205, 163, 75, 0.25);
+      --shadow-glow:       0 8px 32px rgba(0, 0, 0, 0.3), 0 0 15px rgba(205, 163, 75, 0.08);
+      
+      /* ACTIONS & STATUTS */
+      --vert-whatsapp:     #25D366;
+      --rouge-dispo:       #E53E3E;
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 16px; 
+    }
+    body {
+      background-color: var(--gris-fond);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .brand-text { 
+      font-family: 'Playfair Display', serif; 
+    }
+    a { 
+      text-decoration: none; 
+      color: inherit; 
+    }
+    button, input { 
+      font-family: inherit; 
+      background: none; 
+      border: none; 
+      outline: none; 
+    }
+
+    .container { 
+      width: 100%; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 24px; 
+    }
+    .or-text { 
+      color: var(--or-base); 
+    }
+    .text-center { 
+      text-align: center; 
+    }
+
+    /* ==========================================================================
+       🖥️ LOGO SS & COMPOSANTS VISUELS
+       ========================================================================== */
+    .logo-ss {
+      width: 48px; 
+      height: 48px; 
+      display: inline-block;
+      vertical-align: middle; 
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .logo-ss.compact { 
+      width: 40px; 
+      height: 40px; 
+    }
+    .logo-circle { 
+      fill: var(--gris-surface); 
+      stroke: var(--or-base); 
+      stroke-width: 2; 
+    }
+    .logo-text {
+      fill: var(--or-base); 
+      font-family: 'Playfair Display', serif;
+      font-weight: 900; 
+      font-size: 20px; 
+      text-anchor: middle;
+    }
+    .nav-brand:hover .logo-ss {
+      transform: rotate(5deg) scale(1.05);
+      filter: drop-shadow(0 0 8px var(--or-base));
+    }
+
+    /* ==========================================================================
+       6.1 LOADER / SPLASH SCREEN
+       ========================================================================== */
+    #loader {
+      position: fixed; 
+      inset: 0; 
+      background: var(--gris-fond);
+      z-index: 9999; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+    }
+    .loader-content { 
+      text-align: center; 
+    }
+    .loader-title {
+      font-size: 2rem; 
+      color: var(--blanc); 
+      margin-top: 16px;
+      letter-spacing: 2px; 
+      opacity: 0; 
+      transform: translateY(10px);
+      animation: fadeInLoad 0.8s forwards 0.4s;
+    }
+    .logo-svg-wrap { 
+      animation: pulseLoad 1.5s infinite ease-in-out; 
+    }
+
+    @keyframes pulseLoad { 
+      0%, 100% { transform: scale(0.9); opacity: 0.8; } 
+      50% { transform: scale(1.1); opacity: 1; } 
+    }
+    @keyframes fadeInLoad { 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    /* ==========================================================================
+       6.2 NAVBAR & NAVIGATION
+       ========================================================================== */
+    .navbar {
+      position: sticky; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      z-index: 1000;
+      background: transparent; 
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(30, 32, 36, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gris-subtle);
+    }
+    .nav-container {
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      height: 80px; 
+      max-width: 1300px; 
+      margin: 0 auto; 
+      padding: 0 24px;
+    }
+    .nav-brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+    }
+    .brand-text { 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+      color: var(--blanc); 
+    }
+    .nav-menu { 
+      display: flex; 
+      gap: 32px; 
+    }
+    .nav-link {
+      font-weight: 600; 
+      font-size: 0.95rem; 
+      color: var(--blanc-soft);
+      position: relative; 
+      padding: 4px 0; 
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: ''; 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+      width: 100%;
+      height: 2px; 
+      background: var(--or-gradient); 
+      transform: scaleX(0);
+      transition: transform 0.3s ease; 
+      transform-origin: center;
+    }
+    .nav-link:hover { 
+      color: var(--or-bright); 
+    }
+    .nav-link:hover::after { 
+      transform: scaleX(1); 
+    }
+
+    .nav-actions { 
+      display: flex; 
+      align-items: center; 
+      gap: 20px; 
+    }
+    .cart-trigger {
+      position: relative; 
+      font-size: 1.4rem; 
+      color: var(--or-base);
+      cursor: pointer; 
+      transition: color 0.2s;
+    }
+    .cart-trigger:hover { 
+      color: var(--or-bright); 
+    }
+    .cart-badge {
+      position: absolute; 
+      top: -8px; 
+      right: -10px; 
+      width: 18px; 
+      height: 18px;
+      background: var(--or-gradient); 
+      color: #111; 
+      font-size: 0.7rem;
+      font-weight: 700; 
+      border-radius: 50%; 
+      display: none; 
+      align-items: center; 
+      justify-content: center;
+      box-shadow: var(--or-incruste);
+    }
+    .menu-hamburger { 
+      display: none; 
+      font-size: 1.4rem; 
+      color: var(--blanc); 
+      cursor: pointer; 
+    }
+
+    /* ==========================================================================
+       6.3 HERO SECTION (VIDÉO DE FOND & TITRES)
+       ========================================================================== */
+    .section-hero {
+      position: relative; 
+      height: 100vh; 
+      width: 100%; 
+      overflow: hidden;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center;
+      background: radial-gradient(circle at center, #2c2f36 0%, #1e2024 100%);
+    }
+    .bg-video { 
+      position: absolute; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      z-index: 0; 
+    }
+    .section-hero .overlay { 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(to bottom, rgba(30,32,36,0.65), rgba(30,32,36,0.95)); 
+      z-index: 1; 
+    }
+    .hero-content { 
+      position: relative; 
+      z-index: 2; 
+      padding: 0 24px; 
+      max-width: 800px; 
+    }
+    .gold-ornament { 
+      width: 60px; 
+      height: 2px; 
+      background: var(--or-gradient); 
+      margin: 0 auto 24px; 
+    }
+    .section-hero h1 { 
+      font-size: clamp(2.5rem, 6vw, 4.5rem); 
+      margin-bottom: 12px; 
+      font-weight: 700; 
+      line-height: 1.1; 
+    }
+    .hero-subtitle { 
+      font-size: clamp(0.9rem, 2vw, 1.2rem); 
+      text-transform: uppercase; 
+      letter-spacing: 4px; 
+      color: var(--or-base); 
+      font-weight: 600; 
+      margin-bottom: 20px; 
+    }
+    .typewriter-container { 
+      font-size: 1.4rem; 
+      font-weight: 300; 
+      height: 40px; 
+      color: var(--blanc-soft); 
+      margin-bottom: 40px; 
+    }
+    .cursor { 
+      color: var(--or-bright); 
+      font-weight: 700; 
+      animation: blink 0.7s infinite; 
+    }
+    @keyframes blink { 
+      0%, 100% { opacity: 0; } 
+      50% { opacity: 1; } 
+    }
+
+    /* BOUTONS STYLE - Doré Incrusté & Lumineux */
+    .btn-primary {
+      display: inline-flex; 
+      align-items: center; 
+      gap: 10px; 
+      padding: 14px 28px;
+      background: var(--or-gradient); 
+      color: #111; 
+      font-weight: 700;
+      text-transform: uppercase; 
+      font-size: 0.85rem; 
+      letter-spacing: 1px;
+      border-radius: 8px; 
+      cursor: pointer; 
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: var(--or-incruste), 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background 0.3s;
+      position: relative; 
+      overflow: hidden;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--or-incruste), 0 8px 25px rgba(205, 163, 75, 0.3);
+      background: var(--or-bright);
+    }
+    .btn-primary::after {
+      content: ''; 
+      position: absolute; 
+      top: -50%; 
+      left: -60%; 
+      width: 30%; 
+      height: 200%;
+      background: rgba(255,255,255,0.25); 
+      transform: rotate(25deg);
+      transition: none; 
+      animation: shineBtn 4s infinite linear;
+    }
+    @keyframes shineBtn { 
+      0% { left: -60%; } 
+      15% { left: 130%; } 
+      100% { left: 130%; } 
+    }
+
+    /* ==========================================================================
+       6.4 TICKER DÉFILANT
+       ========================================================================== */
+    .ticker-wrap { 
+      background: var(--gris-surface); 
+      border-top: 1px solid var(--gris-subtle); 
+      border-bottom: 1px solid var(--or-base); 
+      overflow: hidden; 
+      padding: 12px 0; 
+    }
+    .ticker { 
+      display: flex; 
+      white-space: nowrap; 
+    }
+    .ticker-item {
+      display: inline-block; 
+      font-size: 0.85rem; 
+      font-weight: 600;
+      color: var(--or-base); 
+      text-transform: uppercase; 
+      letter-spacing: 2px;
+      animation: tickerAnim 30s linear infinite; 
+      padding-right: 40px;
+    }
+    @keyframes tickerAnim { 
+      0% { transform: translate3d(0, 0, 0); } 
+      100% { transform: translate3d(-100%, 0, 0); } 
+    }
+
+    /* ==========================================================================
+       6.5 SECTION PRODUITS & CARDS COMPACTES
+       ========================================================================== */
+    .section-products { 
+      padding: 100px 0; 
+      background: var(--gris-fond); 
+    }
+    .section-header { 
+      text-align: center; 
+      margin-bottom: 60px; 
+    }
+    .section-header h2 { 
+      font-size: 2.8rem; 
+      font-weight: 700; 
+      margin-bottom: 10px; 
+    }
+    .section-header .subtitle { 
+      text-transform: uppercase; 
+      font-size: 0.85rem; 
+      letter-spacing: 3px; 
+      color: var(--or-base); 
+      font-weight: 600; 
+    }
+
+    .products-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+      gap: 32px; 
+    }
+    .product-card {
+      background: var(--gris-surface); 
+      border-radius: 12px; 
+      overflow: hidden;
+      border: var(--border-subtle); 
+      box-shadow: var(--shadow-glow);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s;
+      display: flex; 
+      flex-direction: column; 
+      position: relative;
+    }
+    .product-card:hover { 
+      transform: translateY(-8px); 
+      border-color: var(--or-base); 
+    }
+
+    .card-img-container { 
+      position: relative; 
+      width: 100%; 
+      aspect-ratio: 16/9; 
+      overflow: hidden; 
+      background: #111; 
+    }
+    .card-img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform 0.5s ease; 
+    }
+    .product-card:hover .card-img { 
+      transform: scale(1.05); 
+    }
+
+    .card-badge {
+      position: absolute; 
+      top: 12px; 
+      right: 12px; 
+      background: var(--or-gradient);
+      color: #111; 
+      font-size: 0.7rem; 
+      font-weight: 700; 
+      padding: 4px 10px;
+      border-radius: 4px; 
+      box-shadow: var(--or-incruste); 
+      letter-spacing: 1px;
+    }
+    .card-body { 
+      padding: 24px; 
+      display: flex; 
+      flex-direction: column; 
+      flex-grow: 1; 
+    }
+    .card-title-wrap { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: baseline; 
+      margin-bottom: 8px; 
+    }
+    .card-title { 
+      font-size: 1.4rem; 
+      font-weight: 700; 
+    }
+    .card-subtitle { 
+      font-size: 0.85rem; 
+      font-weight: 600; 
+      color: var(--or-base); 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+    }
+    .card-desc { 
+      font-size: 0.9rem; 
+      color: var(--blanc-soft); 
+      line-height: 1.5; 
+      margin-bottom: 20px; 
+    }
+
+    /* Pills Durée du Moteur de Prix */
+    .duration-selector { 
+      display: flex; 
+      gap: 10px; 
+      margin-bottom: 16px; 
+    }
+    .duration-pill {
+      padding: 6px 16px; 
+      background: var(--gris-subtle); 
+      border-radius: 20px;
+      font-size: 0.8rem; 
+      font-weight: 600; 
+      color: var(--blanc-soft); 
+      cursor: pointer;
+      transition: all 0.2s ease; 
+      border: 1px solid transparent;
+    }
+    .duration-pill:hover { 
+      color: var(--blanc); 
+      background: rgba(255,255,255,0.05); 
+    }
+    .duration-pill.active { 
+      background: var(--or-gradient); 
+      color: #111; 
+      font-weight: 700; 
+      box-shadow: var(--or-incruste); 
+    }
+
+    .price-display { 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+      margin-bottom: 20px; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+    }
+    .price-currency { 
+      font-size: 0.9rem; 
+      color: var(--or-base); 
+      font-weight: 600; 
+    }
+
+    .card-actions { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px; 
+      margin-top: auto; 
+    }
+    .action-row-top { 
+      display: grid; 
+      grid-template-columns: 50px 1fr; 
+      gap: 10px; 
+    }
+    .btn-icon-only {
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      background: var(--gris-subtle);
+      border: 1px solid rgba(255,255,255,0.05); 
+      color: var(--blanc-soft); 
+      border-radius: 8px;
+      cursor: pointer; 
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-icon-only:hover { 
+      background: var(--gris-surface); 
+      color: var(--or-bright); 
+      border-color: var(--or-base); 
+    }
+
+    .btn-secondary-outline {
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px;
+      padding: 12px; 
+      border: 1px solid var(--or-base); 
+      color: var(--or-base);
+      font-weight: 600; 
+      font-size: 0.85rem; 
+      border-radius: 8px; 
+      cursor: pointer;
+      transition: all 0.2s; 
+      background: rgba(205, 163, 75, 0.03);
+    }
+    .btn-secondary-outline:hover { 
+      background: var(--or-gradient); 
+      color: #111; 
+      font-weight: 700; 
+    }
+
+    .btn-whatsapp {
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 10px;
+      padding: 12px; 
+      background: var(--vert-whatsapp); 
+      color: #fff;
+      font-weight: 600; 
+      font-size: 0.85rem; 
+      border-radius: 8px; 
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); 
+      transition: all 0.2s;
+    }
+    .btn-whatsapp:hover { 
+      transform: translateY(-1px); 
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4); 
+      background: #20ba5a; 
+    }
+
+    /* Out of Stock (Hors stock) */
+    .product-card.out-of-stock { 
+      opacity: 0.65; 
+    }
+    .btn-disabled {
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px;
+      padding: 12px; 
+      background: #333 !important; 
+      color: #666 !important;
+      font-weight: 600; 
+      font-size: 0.85rem; 
+      border-radius: 8px; 
+      cursor: not-allowed;
+      box-shadow: none !important; 
+      transform: none !important; 
+      border: none !important;
+    }
+
+    /* Placeholder d'image par défaut */
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1c1d21 0%, #262930 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--or-base);
+      gap: 12px;
+    }
+    .image-placeholder i {
+      font-size: 2.5rem;
+    }
+    .image-placeholder span {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blanc-soft);
+    }
+
+    /* ==========================================================================
+       6.6 SECTION POURQUOI NOUS ? (RÉASSURANCE)
+       ========================================================================== */
+    .section-features { 
+      padding: 80px 0; 
+      background: var(--gris-surface); 
+      border-top: 1px solid var(--gris-subtle); 
+    }
+    .features-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+      gap: 32px; 
+    }
+    .feature-card { 
+      text-align: center; 
+      padding: 20px; 
+      transition: transform 0.3s; 
+    }
+    .feature-card:hover { 
+      transform: translateY(-5px); 
+    }
+    .gold-icon { 
+      font-size: 2.2rem; 
+      color: var(--or-base); 
+      margin-bottom: 16px; 
+      transition: filter 0.3s; 
+    }
+    .feature-card:hover .gold-icon { 
+      filter: drop-shadow(0 0 8px var(--or-bright)); 
+    }
+    .feature-card h3 { 
+      font-size: 1.15rem; 
+      margin-bottom: 8px; 
+      font-weight: 600; 
+      color: var(--blanc); 
+    }
+    .feature-card p { 
+      font-size: 0.85rem; 
+      color: var(--blanc-soft); 
+      line-height: 1.5; 
+    }
+
+    /* ==========================================================================
+       10. PANIER LATÉRAL (CART DRAWER)
+       ========================================================================== */
+    .cart-drawer-overlay {
+      position: fixed; 
+      inset: 0; 
+      background: rgba(0,0,0,0.6); 
+      backdrop-filter: blur(4px);
+      z-index: 1500; 
+      opacity: 0; 
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .cart-drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .cart-drawer {
+      position: fixed; 
+      top: 0; 
+      right: 0; 
+      width: 100%; 
+      max-width: 400px; 
+      height: 100%;
+      background: var(--gris-surface); 
+      border-left: 2px solid var(--or-base); 
+      z-index: 1501;
+      display: flex; 
+      flex-direction: column; 
+      transform: translateX(100%); 
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header { 
+      padding: 24px; 
+      border-bottom: 1px solid var(--gris-subtle); 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+    }
+    .drawer-header h3 { 
+      font-size: 1.4rem; 
+      color: var(--blanc); 
+    }
+    .close-btn { 
+      font-size: 1.3rem; 
+      color: var(--blanc-soft); 
+      cursor: pointer; 
+      transition: color 0.2s; 
+    }
+    .close-btn:hover { 
+      color: var(--or-bright); 
+    }
+
+    .drawer-content { 
+      padding: 24px; 
+      flex-grow: 1; 
+      overflow-y: auto; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px; 
+    }
+    .cart-empty-state { 
+      text-align: center; 
+      margin: auto 0; 
+      color: var(--blanc-soft); 
+    }
+    .cart-empty-state i { 
+      font-size: 3rem; 
+      color: var(--gris-subtle); 
+      margin-bottom: 16px; 
+    }
+
+    .cart-item { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding-bottom: 16px; 
+      border-bottom: 1px solid var(--gris-subtle); 
+    }
+    .cart-item-info h4 { 
+      font-size: 0.95rem; 
+      font-weight: 600; 
+      margin-bottom: 4px; 
+    }
+    .cart-item-info p { 
+      font-size: 0.8rem; 
+      color: var(--or-base); 
+    }
+    .cart-item-right { 
+      display: flex; 
+      align-items: center; 
+      gap: 16px; 
+    }
+    .cart-item-price { 
+      font-weight: 700; 
+      font-size: 0.95rem; 
+    }
+    .btn-remove { 
+      color: var(--rouge-dispo); 
+      cursor: pointer; 
+      font-size: 1rem; 
+      transition: transform 0.2s; 
+    }
+    .btn-remove:hover { 
+      transform: scale(1.1); 
+      filter: drop-shadow(0 0 4px var(--rouge-dispo)); 
+    }
+
+    .drawer-footer { 
+      padding: 24px; 
+      border-top: 1px solid var(--gris-subtle); 
+      background: rgba(30, 32, 36, 0.4); 
+    }
+    .summary-row { 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      margin-bottom: 20px; 
+    }
+    .btn-clear { 
+      display: block; 
+      text-align: center; 
+      font-size: 0.8rem; 
+      color: var(--blanc-soft); 
+      margin-top: 12px; 
+      cursor: pointer; 
+    }
+    .btn-clear:hover { 
+      color: var(--rouge-dispo); 
+      text-decoration: underline; 
+    }
+
+    /* ==========================================================================
+       9. MODAL SLIDE-IN CHIPS (CHAÎNES / JEUX)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed; 
+      inset: 0; 
+      background: rgba(0,0,0,0.7); 
+      backdrop-filter: blur(8px);
+      z-index: 2000; 
+      display: none; 
+      align-items: flex-end; 
+      justify-content: center;
+    }
+    .modal-body {
+      width: 100%; 
+      max-width: 750px; 
+      background: var(--gris-surface); 
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; 
+      border-top: 2px solid var(--or-base); 
+      max-height: 85vh;
+      display: flex; 
+      flex-direction: column; 
+      transform: translateY(100%); 
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-brand-info { 
+      display: flex; 
+      align-items: center; 
+      gap: 14px; 
+    }
+    .modal-brand-info h3 { 
+      font-size: 1.5rem; 
+    }
+    .modal-search-box { 
+      padding: 0 24px 16px; 
+      display: flex; 
+      gap: 16px; 
+      align-items: center; 
+      border-bottom: 1px solid var(--gris-subtle); 
+    }
+    .search-input-wrapper { 
+      position: relative; 
+      flex-grow: 1; 
+    }
+    .search-icon { 
+      position: absolute; 
+      left: 14px; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      color: var(--blanc-soft); 
+      font-size: 0.9rem; 
+    }
+    .search-input-wrapper input {
+      width: 100%; 
+      background: var(--gris-fond); 
+      color: var(--blanc); 
+      padding: 12px 16px 12px 42px;
+      border-radius: 8px; 
+      border: 1px solid var(--gris-subtle); 
+      font-size: 0.9rem; 
+      transition: border-color 0.2s;
+    }
+    .search-input-wrapper input:focus { 
+      border-color: var(--or-base); 
+    }
+    .counter-badge { 
+      font-size: 0.8rem; 
+      background: var(--gris-subtle); 
+      padding: 6px 12px; 
+      border-radius: 6px; 
+      white-space: nowrap; 
+      font-weight: 600; 
+      color: var(--or-base); 
+    }
+
+    .modal-scroll-area { 
+      padding: 24px; 
+      overflow-y: auto; 
+      flex-grow: 1; 
+      min-height: 250px; 
+    }
+    .chips-grid { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+    }
+    .content-chip {
+      padding: 8px 16px; 
+      background: var(--gris-fond); 
+      border: 1px solid var(--gris-subtle);
+      border-radius: 6px; 
+      font-size: 0.85rem; 
+      font-weight: 500; 
+      transition: all 0.2s;
+    }
+    .content-chip:hover { 
+      background: var(--or-gradient); 
+      color: #111; 
+      border-color: transparent; 
+      font-weight: 600; 
+    }
+
+    /* ==========================================================================
+       8. LIGHTBOX PLEIN ÉCRAN
+       ========================================================================== */
+    .lightbox {
+      position: fixed; 
+      inset: 0; 
+      background: rgba(19, 20, 22, 0.98); 
+      z-index: 3000;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      opacity: 0; 
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-close { 
+      position: absolute; 
+      top: 24px; 
+      right: 24px; 
+      font-size: 2rem; 
+      color: #fff; 
+      cursor: pointer; 
+    }
+    .lightbox-close:hover { 
+      color: var(--or-bright); 
+    }
+    .lightbox-nav { 
+      position: absolute; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      font-size: 2.5rem; 
+      color: #fff; 
+      cursor: pointer; 
+      padding: 20px; 
+      transition: color 0.2s; 
+    }
+    .lightbox-nav:hover { 
+      color: var(--or-base); 
+    }
+    .lightbox-nav.prev { 
+      left: 10px; 
+    }
+    .lightbox-nav.next { 
+      right: 10px; 
+    }
+    .lightbox-img-wrap { 
+      max-width: 85vw; 
+      max-height: 80vh; 
+      position: relative; 
+      text-align: center; 
+    }
+    .lightbox-img-wrap img { 
+      max-width: 100%; 
+      max-height: 80vh; 
+      object-fit: contain; 
+      border-radius: 4px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
+    }
+    .lightbox-counter { 
+      margin-top: 16px; 
+      font-size: 0.9rem; 
+      color: var(--blanc-soft); 
+      font-weight: 600; 
+      letter-spacing: 1px; 
+    }
+
+    /* ==========================================================================
+       10. TOAST NOTIFICATIONS
+       ========================================================================== */
+    #toastContainer { 
+      position: fixed; 
+      bottom: 24px; 
+      right: 24px; 
+      z-index: 4000; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px; 
+    }
+    .toast {
+      background: var(--or-gradient); 
+      color: #111; 
+      padding: 14px 24px; 
+      border-radius: 8px;
+      font-weight: 700; 
+      font-size: 0.9rem; 
+      box-shadow: var(--or-incruste), 0 10px 30px rgba(0,0,0,0.3);
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      transform: translateX(120%); 
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .toast.show { 
+      transform: translateX(0); 
+    }
+
+    /* ==========================================================================
+       6.7 FOOTER
+       ========================================================================== */
+    footer { 
+      background: var(--gris-fond); 
+      padding: 60px 0 30px; 
+      border-top: 1px solid var(--or-base); 
+    }
+    .footer-title { 
+      font-size: 2rem; 
+      margin-top: 12px; 
+    }
+    .footer-slogan { 
+      font-size: 0.9rem; 
+      color: var(--blanc-soft); 
+      font-weight: 300; 
+      margin-bottom: 24px; 
+    }
+    .footer-separator { 
+      width: 50px; 
+      height: 1px; 
+      background: var(--gris-subtle); 
+      margin: 0 auto 24px; 
+    }
+    .whatsapp-link {
+      display: inline-flex; 
+      align-items: center; 
+      gap: 10px; 
+      color: var(--vert-whatsapp);
+      font-weight: 600; 
+      font-size: 1.1rem; 
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 10px 20px; 
+      border-radius: 30px; 
+      transition: all 0.2s; 
+      background: rgba(37, 211, 102, 0.02);
+    }
+    .whatsapp-link:hover { 
+      background: var(--vert-whatsapp); 
+      color: #fff; 
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); 
+    }
+    .copyright { 
+      margin-top: 40px; 
+      font-size: 0.8rem; 
+      color: rgba(255,255,255,0.3); 
+      letter-spacing: 0.5px; 
+    }
+
+    /* ==========================================================================
+       12. RESPONSIVE DESIGN BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .nav-menu { display: none; }
+      .menu-hamburger { display: block; }
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+    }
+
+    /* Menu mobile déplié */
+    .navbar.mobile-open { 
+      background: rgba(30, 32, 36, 0.98) !important; 
+      height: auto; 
+    }
+    .navbar.mobile-open .nav-menu {
+      display: flex; 
+      flex-direction: column; 
+      width: 100%; 
+      grid-column: span 3;
+      padding: 20px 0; 
+      text-align: center; 
+      gap: 20px; 
+      border-top: 1px solid var(--gris-subtle);
+    }
+    .navbar.mobile-open .nav-container { 
+      flex-wrap: wrap; 
+      height: auto; 
+      padding: 15px 24px; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       6.1 LOADER / SPLASH SCREEN
+       ========================================================================== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="logo-svg-wrap">
+        <svg class="logo-ss" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="23" class="logo-circle"/>
+          <text x="25" y="32" class="logo-text">SS</text>
+        </svg>
+      </div>
+      <h2 class="loader-title">Smart Solution</h2>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       6.2 NAVBAR
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">
+        <svg class="logo-ss" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="23" class="logo-circle"/>
+          <text x="25" y="32" class="logo-text">SS</text>
+        </svg>
+        <span class="brand-text">Smart Solution</span>
+      </a>
+      
+      <nav class="nav-menu">
+        <a href="#hero" class="nav-link" onclick="closeMobileMenu()">Accueil</a>
+        <a href="#offres" class="nav-link" onclick="closeMobileMenu()">Nos Abonnements</a>
+        <a href="#pourquoi" class="nav-link" onclick="closeMobileMenu()">Pourquoi Nous ?</a>
+        <a href="#footer" class="nav-link" onclick="closeMobileMenu()">Contact</a>
+      </nav>
+      
+      <div class="nav-actions">
+        <button class="cart-trigger" onclick="toggleCart(true)" aria-label="Voir le panier">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <button class="menu-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       6.3 HERO SECTION (VIDÉO & EFFET TYPEWRITER)
+       ========================================================================== */ -->
+  <section id="hero" class="section-hero">
+    <!-- Image Fallback de fond pour le luxe de la présentation si la vidéo ne charge pas -->
+    <video autoplay loop muted playsinline class="bg-video" preload="auto">
+      <source src="assets/videos/bg-hero.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <div class="gold-ornament"></div>
+      <h1>Smart Solution</h1>
+      <p class="hero-subtitle">Brazzaville • Streaming • Gaming • IPTV</p>
+      <div class="typewriter-container">
+        <span id="typewriter"></span><span class="cursor">|</span>
+      </div>
+      <a href="#offres" class="btn-primary">Découvrir nos offres <i class="fa-solid fa-arrow-down"></i></a>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6.4 BANDE DÉFILANTE (TICKER)
+       ========================================================================== -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker-item">✦ MyCanal Premium ✦ MyCanal Ultra — Tout Canal ✦ IPTV +10 000 Chaînes ✦ Xbox GamePass Ultimate ✦ PlayStation Plus ✦ Activation Instantanée ✦ Brazzaville, Congo ✦</div>
+      <div class="ticker-item">✦ MyCanal Premium ✦ MyCanal Ultra — Tout Canal ✦ IPTV +10 000 Chaînes ✦ Xbox GamePass Ultimate ✦ PlayStation Plus ✦ Activation Instantanée ✦ Brazzaville, Congo ✦</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       6.5 SECTION PRODUITS
+       ========================================================================== -->
+  <section id="offres" class="section-products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nos Abonnements</h2>
+        <p class="subtitle">Qualité premium · Prix Congo Brazzaville</p>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <!-- Injection dynamique des cartes par le JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6.6 SECTION POURQUOI SMART SOLUTION ?
+       ========================================================================== -->
+  <section id="pourquoi" class="section-features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fa-solid fa-bolt gold-icon"></i>
+          <h3>Activation Instantanée</h3>
+          <p>Votre abonnement configuré et livré en moins de 24h chrono.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-shield-halved gold-icon"></i>
+          <h3>Paiement Sécurisé</h3>
+          <p>Transactions de confiance locale, satisfaction garantie à 100%.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-globe gold-icon"></i>
+          <h3>Pour tout le Congo</h3>
+          <p>Abonnez-vous facilement depuis Brazzaville et toutes les provinces.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-comments gold-icon"></i>
+          <h3>Support WhatsApp</h3>
+          <p>Une équipe réactive à votre écoute 7j/7 pour toute assistance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. DRAWER PANIER LATÉRAL (BASKET)
+       ========================================================================== -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h3>Mon Panier <i class="fa-solid fa-basket-shopping"></i></h3>
+      <button class="close-btn" onclick="toggleCart(false)" aria-label="Fermer le panier">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="drawer-content" id="cartItemsContainer">
+      <!-- Rendu via JS -->
+    </div>
+    <div class="drawer-footer" id="cartFooter">
+      <!-- Calculs et CTA via JS -->
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       9. MODAL SLIDE-IN CHAÎNES / JEUX (CHIPS)
+       ========================================================================== -->
+  <div class="modal-overlay" id="contentModal" onclick="closeContentModal(event)">
+    <div class="modal-body">
+      <div class="modal-header" style="padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gris-subtle);">
+        <div class="modal-brand-info">
+          <svg class="logo-ss compact" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="23" class="logo-circle"/>
+            <text x="25" y="32" class="logo-text">SS</text>
+          </svg>
+          <div>
+            <h3 id="modalProdName" style="font-size: 1.4rem;">Nom Produit</h3>
+            <p id="modalProdSub" class="or-text" style="font-size: 0.85rem; font-weight:600; text-transform: uppercase;">Sous-titre</p>
+          </div>
+        </div>
+        <button class="close-btn" onclick="closeContentModal(null, true)" aria-label="Fermer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-search-box" style="padding-top: 16px;">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="modalSearchInput" placeholder="Rechercher une chaîne, un bouquet ou un jeu..." oninput="filterContentChips()">
+        </div>
+        <span class="counter-badge" id="modalItemsCount">0 trouvés</span>
+      </div>
+      <div class="modal-scroll-area">
+        <div class="chips-grid" id="modalChipsGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       8. LIGHTBOX PLEIN ÉCRAN
+       ========================================================================== -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(null, true)" aria-label="Fermer la galerie"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-nav prev" onclick="navigateLightbox(-1, event)" aria-label="Précédent"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="lightbox-img-wrap">
+      <img src="" id="lightboxImg" alt="Aperçu plein écran">
+      <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    </div>
+    <button class="lightbox-nav next" onclick="navigateLightbox(1, event)" aria-label="Suivant"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+  <!-- Toasts dynamiques -->
+  <div id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       6.7 FOOTER & CONTACTS
+       ========================================================================== -->
+  <footer id="footer">
+    <div class="container text-center">
+      <svg class="logo-ss" viewBox="0 0 50 50">
+        <circle cx="25" cy="25" r="23" class="logo-circle"/>
+        <text x="25" y="32" class="logo-text">SS</text>
+      </svg>
+      <h3 class="footer-title">Smart Solution</h3>
+      <p class="footer-slogan">Votre divertissement premium, à Brazzaville</p>
+      <div class="footer-separator"></div>
+      <a href="https://wa.me/24206087924" target="_blank" class="whatsapp-link">
+        <i class="fa-brands fa-whatsapp"></i> Nous écrire sur WhatsApp (+242 06 087 924)
+      </a>
+      <p class="copyright">© 2026 Smart Solution — Brazzaville, Congo. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       BIBLIOTHÈQUES GRAPHQUES & LOGIQUE APPLICATIVE COMPLETE
+       ========================================================================== -->
+  <!-- GSAP pour les animations (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script>
+    /* ============================================================
+       ⚙️ CONFIG.JS — Smart Solution, Brazzaville
+       ============================================================ */
+    const CONFIG = {
+      site: {
+        nom:      "Smart Solution",
+        slogan:   "Votre divertissement premium, à Brazzaville",
+        whatsapp: "+24206087924",
+        ville:    "Brazzaville, Congo",
+      },
+
+      videos: {
+        hero:    "assets/videos/bg-hero.mp4",
+        mycanal: "assets/videos/bg-mycanal.mp4",
+        iptv:    "assets/videos/bg-iptv.mp4",
+        gaming:  "assets/videos/bg-game.mp4",
+      },
+
+      produits: [
+        {
+          id:          "mycanal-base",
+          nom:         "MyCanal",
+          sous_titre:  "Offre de Base",
+          categorie:   "mycanal",
+          description: "L'essentiel de Canal+ pour toute la famille. Films, séries et sport en HD.",
+          badge:       null,
+          carte_image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+          en_stock:    true,
+          tarifs: {
+            "1 mois":  5000,
+            "3 mois":  13000,
+          },
+          apercu_images: [
+            "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1478720143023-e7a24b74c582?auto=format&fit=crop&w=800&q=80"
+          ],
+          type_contenu: "chaînes",
+          contenu: [
+            "Canal+ Family", "Canal+ Series", "Canal+ Sport", "CNews",
+            "BFM TV", "Disney Channel", "Cartoon Network", "MCM",
+            "MTV", "Eurosport 1", "TV5 Monde", "RFI"
+          ],
+        },
+        {
+          id:          "mycanal-premium",
+          nom:         "MyCanal",
+          sous_titre:  "Premium",
+          categorie:   "mycanal",
+          description: "Plus de chaînes, plus de sport, plus de cinéma. L'expérience Canal+ complète.",
+          badge:       "POPULAIRE",
+          carte_image: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=800&q=80",
+          en_stock:    true,
+          tarifs: {
+            "1 mois":  8000,
+            "3 mois":  21000,
+          },
+          apercu_images: [
+            "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80"
+          ],
+          type_contenu: "chaînes",
+          contenu: [
+            "Canal+ Family", "Canal+ Series", "Canal+ Sport", "Canal+ Cinéma",
+            "BeIN Sports 1", "BeIN Sports 2", "OCS Max", "OCS City",
+            "Paramount+", "SyFy", "National Geographic", "Discovery Channel",
+            "Canal+ Kids", "Disney Channel", "Arte", "Eurosport 1-2"
+          ],
+        },
+        {
+          id:          "mycanal-ultra",
+          nom:         "MyCanal",
+          sous_titre:  "Ultra Premium — Tout Canal",
+          categorie:   "mycanal",
+          description: "L'intégralité de l'univers Canal+ sans restriction. Aucun compromis.",
+          badge:       "BEST VALUE",
+          carte_image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80",
+          en_stock:    true,
+          tarifs: {
+            "1 mois":  12000,
+            "3 mois":  32000,
+          },
+          apercu_images: [
+            "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?auto=format&fit=crop&w=800&q=80"
+          ],
+          type_contenu: "chaînes",
+          contenu: [
+            "Canal+ Family", "Canal+ Series", "Canal+ Sport", "Canal+ Cinéma",
+            "Canal+ Kids", "Canal+ Docs", "Canal+ Décalé", "Canal+ Grand Écran",
+            "BeIN Sports 1", "BeIN Sports 2", "BeIN Sports 3", "RMC Sport 1",
+            "RMC Sport 2", "Eurosport 1", "Eurosport 2", "L'Équipe TV",
+            "OCS Max", "OCS City", "OCS Choc", "OCS Géants",
+            "Paramount+", "Disney+", "Apple TV+ via Canal", "Netflix via Canal",
+            "National Geographic", "Discovery", "SyFy", "MTV", "MCM"
+          ],
+        },
+        {
+          id:          "iptv",
+          nom:         "IPTV Premium",
+          sous_titre:  "+10 000 Chaînes",
+          categorie:   "iptv",
+          description: "Le monde entier dans ton écran. Sport, cinéma, actualités, séries... Sans limite.",
+          badge:       "+10 000 CHAÎNES",
+          carte_image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+          en_stock:    true,
+          tarifs: {
+            "1 mois":  6000,
+            "3 mois":  16000,
+          },
+          apercu_images: [
+            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+          ],
+          type_contenu: "chaînes",
+          contenu: [
+            "🌍 Afrique — Africa 24, TV5 Monde Afrique, RTI, RTNC, DRTV",
+            "🇫🇷 France — TF1, France 2, M6, Canal+, BFM TV, CNews, Arte",
+            "🏆 Sport — BeIN Sports, ESPN, Sky Sports, RMC Sport, Eurosport",
+            "🎬 Cinéma — HBO, Showtime, Starz, Canal+ Cinéma, TCM Cinéma",
+            "🧒 Enfants — Disney Channel, Cartoon Network, Nickelodeon, Gulli",
+            "📚 Documentaires — National Geographic, Discovery, History Channel"
+          ],
+        },
+        {
+          id:          "gamepass",
+          nom:         "Xbox Game Pass",
+          sous_titre:  "Ultimate",
+          categorie:   "gaming",
+          description: "Accès illimité à +100 jeux Xbox et PC, dont les sorties Day One.",
+          badge:       "DAY ONE",
+          carte_image: "https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?auto=format&fit=crop&w=800&q=80",
+          en_stock:    true,
+          tarifs: {
+            "1 mois":  5500,
+            "3 mois":  14500,
+          },
+          apercu_images: [
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=80"
+          ],
+          type_contenu: "jeux",
+          contenu: [
+            "Halo Infinite", "Forza Horizon 5", "Starfield", "Diablo IV", 
+            "Sea of Thieves", "Minecraft", "GTA V", "EA Sports FC 24",
+            "Cyberpunk 2077", "The Witcher 3", "Assassin's Creed Valhalla"
+          ],
+        },
+        {
+          id:          "psplus",
+          nom:         "PlayStation Plus",
+          sous_titre:  "Premium",
+          categorie:   "gaming",
+          description: "Le meilleur du gaming PlayStation. Multijoueur en ligne + jeux offerts chaque mois.",
+          badge:       "PS5 OPTIMISÉ",
+          carte_image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=800&q=80",
+          en_stock:    false, // Bouton hors stock automatique
+          tarifs: {
+            "1 mois":  5500,
+            "3 mois":  14500,
+          },
+          apercu_images: [
+            "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80"
+          ],
+          type_contenu: "jeux",
+          contenu: [
+            "Spider-Man 2", "God of War Ragnarök", "The Last of Us Part I",
+            "Horizon Forbidden West", "Ghost of Tsushima", "EA Sports FC 24"
+          ],
+        },
+      ],
+    };
+
+    /* ==========================================================================
+       ⚡ LOGIQUE APPLICATIVE COMPLETE (MAIN SYSTEM)
+       ========================================================================== */
+    let APPLI_STATE = {
+      cart: JSON.parse(localStorage.getItem('smartsolution_cart')) || [],
+      activeLightboxImages: [],
+      lightboxIndex: 0,
+      currentModalProduct: null
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initLoader();
+      initNavbarScroll();
+      initTypewriter();
+      renderProductCards();
+      updateCartCounterBadge();
+    });
+
+    // 6.1 Splash Screen Loader
+    function initLoader() {
+      const loader = document.getElementById("loader");
+      if (loader) {
+        setTimeout(() => {
+          gsap.to(loader, {
+            opacity: 0, 
+            y: -30, 
+            duration: 0.5, 
+            ease: "power2.inOut", 
+            onComplete: () => {
+              loader.style.display = "none";
+            }
+          });
+        }, 1600);
+      }
+    }
+
+    // 6.2 Navbar glassmorphism au scroll
+    function initNavbarScroll() {
+      const navbar = document.querySelector(".navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    }
+
+    // Navigation Menu mobile
+    function toggleMobileMenu() {
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.toggle("mobile-open");
+    }
+
+    function closeMobileMenu() {
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.remove("mobile-open");
+    }
+
+    // 6.3 Typewriter effect sur la section Hero
+    function initTypewriter() {
+      const target = document.getElementById("typewriter");
+      if (!target) return;
+      
+      const strings = [
+        "MyCanal Premium & Ultra",
+        "+10 000 Chaînes IPTV",
+        "Xbox GamePass Ultimate",
+        "PlayStation Plus Premium"
+      ];
+      
+      let stringIdx = 0;
+      let charIdx = 0;
+      let isDeleting = false;
+      
+      function type() {
+        const currentText = strings[stringIdx];
+        if (isDeleting) {
+          target.textContent = currentText.substring(0, charIdx - 1);
+          charIdx--;
+        } else {
+          target.textContent = currentText.substring(0, charIdx + 1);
+          charIdx++;
+        }
+        
+        let typeSpeed = isDeleting ? 40 : 80;
+        
+        if (!isDeleting && charIdx === currentText.length) {
+          typeSpeed = 2200; 
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          stringIdx = (stringIdx + 1) % strings.length;
+          typeSpeed = 400; 
+        }
+        
+        setTimeout(type, typeSpeed);
+      }
+      
+      setTimeout(type, 500);
+    }
+
+    // 16. Fallback d'images en cas d'absence d'images locales
+    function handleImageError(img, category) {
+      img.onerror = null; // Évite les boucles infinies de rechargement
+      const parent = img.parentElement;
+      parent.innerHTML = `
+        <div class="image-placeholder">
+          <i class="fa-solid ${category === 'gaming' ? 'fa-gamepad' : 'fa-tv'}"></i>
+          <span>Aperçu Indisponible</span>
+        </div>
+      `;
+    }
+
+    // 6.5 Rendu dynamique des cartes produits
+    function renderProductCards() {
+      const grid = document.getElementById("productsGrid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      CONFIG.produits.forEach(prod => {
+        const defaultDuration = Object.keys(prod.tarifs)[0];
+        const defaultPrice = prod.tarifs[defaultDuration];
+        
+        const card = document.createElement("div");
+        card.className = `product-card ${!prod.en_stock ? 'out-of-stock' : ''}`;
+        card.setAttribute("data-id", prod.id);
+        
+        // Construction des pills de durée
+        let durationPillsHtml = "";
+        Object.keys(prod.tarifs).forEach((duration, idx) => {
+          durationPillsHtml += `
+            <button class="duration-pill ${idx === 0 ? 'active' : ''}" 
+                    onclick="updateCardPrice('${prod.id}', '${duration}', ${prod.tarifs[duration]}, this)">
+              ${duration}
+            </button>
+          `;
+        });
+
+        // Structure d'actions selon la disponibilité
+        let actionButtonsHtml = "";
+        if (prod.en_stock) {
+          const encodedWaSingle = encodeURIComponent(`Bonjour Smart Solution 👋\nJe suis intéressé par l'offre : ${prod.nom} (${prod.sous_titre}) pour une durée de ${defaultDuration}.\nMerci !`);
+          actionButtonsHtml = `
+            <div class="action-row-top">
+              <button class="btn-icon-only" title="Aperçu Galerie" onclick="openLightboxOutside('${prod.id}')"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <button class="btn-secondary-outline" onclick="openContentModal('${prod.id}')">
+                <i class="fa-solid ${prod.type_contenu === 'jeux' ? 'fa-gamepad' : 'fa-tv'}"></i> Voir les ${prod.type_contenu}
+              </button>
+            </div>
+            <button class="btn-primary" onclick="addProductToCartAction('${prod.id}')">Ajouter au panier 🛒</button>
+            <a href="https://wa.me/${CONFIG.site.whatsapp.replace('+', '')}?text=${encodedWaSingle}" target="_blank" class="btn-whatsapp data-wa-btn">
+              <i class="fa-brands fa-whatsapp"></i> Commander sur WhatsApp
+            </a>
+          `;
+        } else {
+          actionButtonsHtml = `
+            <button class="btn-disabled"><i class="fa-solid fa-triangle-exclamation"></i> Momentanément Indisponible</button>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="card-img-container">
+            <img src="${prod.carte_image}" alt="[Image de ${prod.nom}]" class="card-img" loading="lazy" onerror="handleImageError(this, '${prod.categorie}')">
+            ${prod.badge ? `<span class="card-badge">${prod.badge}</span>` : ''}
+          </div>
+          <div class="card-body">
+            <div class="card-title-wrap">
+              <h3 class="card-title">${prod.nom}</h3>
+              <span class="card-subtitle">${prod.sous_titre}</span>
+            </div>
+            <p class="card-desc">${prod.description}</p>
+            
+            ${prod.en_stock ? `
+              <div class="duration-selector">${durationPillsHtml}</div>
+              <div class="price-display" id="price_${prod.id}">
+                <span class="price-val">${defaultPrice.toLocaleString()}</span>
+                <span class="price-currency">FCFA</span>
+              </div>
+            ` : ''}
+            
+            <div class="card-actions">${actionButtonsHtml}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Gestion de la mise à jour dynamique des tarifs
+    function updateCardPrice(productId, duration, price, pillElement) {
+      const parent = pillElement.parentElement;
+      parent.querySelectorAll(".duration-pill").forEach(p => p.classList.remove("active"));
+      pillElement.classList.add("active");
+
+      const priceContainer = document.getElementById(`price_${productId}`);
+      if (priceContainer) {
+        priceContainer.querySelector(".price-val").textContent = price.toLocaleString();
+      }
+
+      const cardElement = parent.closest(".product-card");
+      const prod = CONFIG.produits.find(p => p.id === productId);
+      const waBtn = cardElement.querySelector(".data-wa-btn");
+      if (waBtn && prod) {
+        const textStr = `Bonjour Smart Solution 👋\nJe suis intéressé par l'offre : ${prod.nom} (${prod.sous_titre}) pour une durée de ${duration}.\nMerci !`;
+        waBtn.href = `https://wa.me/${CONFIG.site.whatsapp.replace('+', '')}?text=${encodeURIComponent(textStr)}`;
+      }
+    }
+
+    /* ==========================================================================
+       🛒 CORE PANIER INTERNE (LOCALSTORAGE)
+       ========================================================================== */
+    function toggleCart(open) {
+      const drawer = document.getElementById("cartDrawer");
+      const overlay = document.getElementById("cartOverlay");
+      if (open) {
+        renderCartItems();
+        overlay.classList.add("open");
+        drawer.classList.add("open");
+      } else {
+        overlay.classList.remove("open");
+        drawer.classList.remove("open");
+      }
+    }
+
+    function addProductToCartAction(productId) {
+      const prod = CONFIG.produits.find(p => p.id === productId);
+      if (!prod) return;
+
+      const card = document.querySelector(`.product-card[data-id="${productId}"]`);
+      let selectedDuration = "1 mois";
+      let targetPrice = prod.tarifs[selectedDuration];
+
+      if (card) {
+        const activePill = card.querySelector(".duration-pill.active");
+        if (activePill) {
+          selectedDuration = activePill.textContent.trim();
+          targetPrice = prod.tarifs[selectedDuration];
+        }
+      }
+
+      APPLI_STATE.cart.push({
+        cartUid: Date.now() + Math.random().toString(36).substr(2, 5),
+        id: prod.id,
+        nom: prod.nom,
+        sub: prod.sous_titre,
+        duree: selectedDuration,
+        prix: targetPrice
+      });
+
+      saveCartToStorage();
+      updateCartCounterBadge();
+      triggerToast(`✓ ${prod.nom} ajouté au panier !`);
+
+      // Animation de vibration sur l'icône du panier
+      const cartIcon = document.querySelector(".cart-trigger");
+      if (cartIcon) {
+        gsap.fromTo(cartIcon, { rotate: -15 }, { rotate: 0, duration: 0.4, ease: "elastic.out(1, 0.3)" });
+      }
+    }
+
+    function removeCartItem(cartUid) {
+      APPLI_STATE.cart = APPLI_STATE.cart.filter(item => item.cartUid !== cartUid);
+      saveCartToStorage();
+      updateCartCounterBadge();
+      renderCartItems();
+    }
+
+    function clearAllCart() {
+      APPLI_STATE.cart = [];
+      saveCartToStorage();
+      updateCartCounterBadge();
+      renderCartItems();
+    }
+
+    function saveCartToStorage() {
+      localStorage.setItem('smartsolution_cart', JSON.stringify(APPLI_STATE.cart));
+    }
+
+    function updateCartCounterBadge() {
+      const badge = document.getElementById("cartCount");
+      if (!badge) return;
+      const count = APPLI_STATE.cart.length;
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = "flex";
+      } else {
+        badge.style.display = "none";
+      }
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById("cartItemsContainer");
+      const footer = document.getElementById("cartFooter");
+      if (!container || !footer) return;
+
+      if (APPLI_STATE.cart.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty-state">
+            <i class="fa-solid fa-basket-shopping" style="color: var(--gris-subtle); margin-top:20px;"></i>
+            <p style="margin-top: 12px;">Votre panier est vide</p>
+          </div>
+        `;
+        footer.innerHTML = "";
+        return;
+      }
+
+      container.innerHTML = "";
+      let total = 0;
+      let waMessageString = "Bonjour Smart Solution 👋\n\nJe souhaite valider la commande suivante :\n";
+
+      APPLI_STATE.cart.forEach(item => {
+        total += item.prix;
+        waMessageString += `✦ ${item.nom} [${item.sub}] — ${item.duree} : ${item.prix.toLocaleString()} FCFA\n`;
+
+        const itemRow = document.createElement("div");
+        itemRow.className = "cart-item";
+        itemRow.innerHTML = `
+          <div class="cart-item-info">
+            <h4>${item.nom}</h4>
+            <p>${item.sub} — <b>${item.duree}</b></p>
+          </div>
+          <div class="cart-item-right">
+            <span class="cart-item-price">${item.prix.toLocaleString()} F</span>
+            <i class="fa-solid fa-trash-can btn-remove" onclick="removeCartItem('${item.cartUid}')" aria-label="Supprimer"></i>
+          </div>
+        `;
+        container.appendChild(itemRow);
+      });
+
+      waMessageString += `\n💵 Total Général : ${total.toLocaleString()} FCFA\n\nMerci d'avance pour l'activation rapide !`;
+      const finalWaUrl = `https://wa.me/${CONFIG.site.whatsapp.replace('+', '')}?text=${encodeURIComponent(waMessageString)}`;
+
+      footer.innerHTML = `
+        <div class="summary-row">
+          <span>Sous-Total :</span>
+          <span class="or-text">${total.toLocaleString()} FCFA</span>
+        </div>
+        <a href="${finalWaUrl}" target="_blank" class="btn-whatsapp" style="width:100%;">
+          <i class="fa-brands fa-whatsapp"></i> Envoyer la commande WhatsApp
+        </a>
+        <span class="btn-clear" onclick="clearAllCart()">Vider mon panier</span>
+      `;
+    }
+
+    /* ==========================================================================
+       📋 MODAL RECHERCHABLE POUR CHAÎNES ET JEUX
+       ========================================================================== */
+    function openContentModal(productId) {
+      const prod = CONFIG.produits.find(p => p.id === productId);
+      if (!prod) return;
+
+      APPLI_STATE.currentModalProduct = prod;
+      document.getElementById("modalProdName").textContent = prod.nom;
+      document.getElementById("modalProdSub").textContent = prod.sous_titre;
+      document.getElementById("modalSearchInput").value = "";
+
+      const grid = document.getElementById("modalChipsGrid");
+      grid.innerHTML = "";
+
+      prod.contents = prod.contenu; // Liaison sécurisée
+      prod.contents.forEach(item => {
+        const chip = document.createElement("span");
+        chip.className = "content-chip";
+        chip.textContent = item;
+        grid.appendChild(chip);
+      });
+
+      document.getElementById("modalItemsCount").textContent = `${prod.contents.length} disponible(s)`;
+
+      const modal = document.getElementById("contentModal");
+      const modalBody = modal.querySelector(".modal-body");
+      
+      modal.style.display = "flex";
+      
+      // Animation Slide-Up du Modal
+      gsap.fromTo(modalBody, { y: "100%" }, { y: "0%", duration: 0.4, ease: "power3.out" });
+      
+      // Animation progressive de chaque badge (Stagger)
+      gsap.fromTo(".content-chip", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.01, ease: "power1.out" });
+    }
+
+    function closeContentModal(event, force = false) {
+      if (force || (event && event.target && event.target.id === "contentModal")) {
+        const modal = document.getElementById("contentModal");
+        const modalBody = modal.querySelector(".modal-body");
+        
+        gsap.to(modalBody, {
+          y: "100%", 
+          duration: 0.3, 
+          ease: "power3.in", 
+          onComplete: () => {
+            modal.style.display = "none";
+            APPLI_STATE.currentModalProduct = null;
+          }
+        });
+      }
+    }
+
+    function filterContentChips() {
+      const query = document.getElementById("modalSearchInput").value.toLowerCase().trim();
+      const chips = document.querySelectorAll(".content-chip");
+      let matchesCount = 0;
+
+      chips.forEach(chip => {
+        const txt = chip.textContent.toLowerCase();
+        if (txt.includes(query)) {
+          chip.style.display = "inline-block";
+          matchesCount++;
+        } else {
+          chip.style.display = "none";
+        }
+      });
+
+      document.getElementById("modalItemsCount").textContent = `${matchesCount} trouvé(s)`;
+    }
+
+    /* ==========================================================================
+       🖼️ GALERIE LIGHTBOX PLEIN ÉCRAN
+       ========================================================================== */
+    function openLightboxOutside(productId) {
+      const prod = CONFIG.produits.find(p => p.id === productId);
+      if (!prod || !prod.apercu_images || prod.apercu_images.length === 0) {
+        triggerToast("Aucun aperçu disponible pour cette offre.");
+        return;
+      }
+      APPLI_STATE.activeLightboxImages = prod.apercu_images;
+      APPLI_STATE.lightboxIndex = 0;
+      displayLightboxImage();
+    }
+
+    function displayLightboxImage() {
+      const box = document.getElementById("lightbox");
+      const img = document.getElementById("lightboxImg");
+      const counter = document.getElementById("lightboxCounter");
+
+      img.style.opacity = "0";
+      
+      // Gestionnaire de fallback d'image SVG si l'adresse n'est pas accessible
+      img.onerror = () => {
+        img.onerror = null;
+        img.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%23262930'/><text x='50%25' y='50%25' fill='%23cda34b' font-family='sans-serif' font-size='20' dy='.3em' text-anchor='middle'>Aperçu de l'interface bientôt disponible</text></svg>";
+      };
+      img.src = APPLI_STATE.activeLightboxImages[APPLI_STATE.lightboxIndex];
+      
+      counter.textContent = `${APPLI_STATE.lightboxIndex + 1} / ${APPLI_STATE.activeLightboxImages.length}`;
+
+      box.classList.add("open");
+      setTimeout(() => {
+        img.style.transition = "opacity 0.3s ease";
+        img.style.opacity = "1";
+      }, 50);
+    }
+
+    function navigateLightbox(direction, event) {
+      if (event) event.stopPropagation();
+      let nextIdx = APPLI_STATE.lightboxIndex + direction;
+      if (nextIdx >= APPLI_STATE.activeLightboxImages.length) nextIdx = 0;
+      if (nextIdx < 0) nextIdx = APPLI_STATE.activeLightboxImages.length - 1;
+      
+      APPLI_STATE.lightboxIndex = nextIdx;
+      displayLightboxImage();
+    }
+
+    function closeLightbox(event, force = false) {
+      if (force || (event && event.target && event.target.id === "lightbox") || (event && event.target && event.target.closest(".lightbox-close"))) {
+        const box = document.getElementById("lightbox");
+        box.classList.remove("open");
+      }
+    }
+
+    /* TOAST DE NOTIFICATION FLOTTANT */
+    function triggerToast(message) {
+      const container = document.getElementById("toastContainer");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => { toast.classList.add("show"); }, 50);
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => { toast.remove(); }, 300);
+      }, 3000);
+    }
+
+    // Capture des touches claviers (Fermetures faciles)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeLightbox(null, true);
+        closeContentModal(null, true);
+        toggleCart(false);
+      }
+    });
+  </script>
+</body>
+</html>
